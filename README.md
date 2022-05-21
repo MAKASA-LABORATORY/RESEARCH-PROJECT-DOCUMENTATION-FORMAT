@@ -1,2 +1,2 @@
-# RESEARCH-PROJECT-ACM-FORMAT
+# RESEARCH-PROJECT-FORMAT
 Format for the Research Project Documentation
