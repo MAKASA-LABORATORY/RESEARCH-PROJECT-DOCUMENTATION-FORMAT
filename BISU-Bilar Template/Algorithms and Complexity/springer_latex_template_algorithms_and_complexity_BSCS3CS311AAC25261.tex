@@ -1,0 +1,224 @@
+\documentclass[runningheads]{llncs}
+
+% Springer-friendly packages
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+
+% ==========================
+% TITLE, AUTHORS, AFFILIATION
+% ==========================
+\title{Measuring Algorithmic Time Complexity from Source Code Implementations\\
+in the [Project Name -- Feature]}
+
+\titlerunning{Time Complexity in the [Project Name -- Feature]} % short title
+
+\author{All Authors Name\inst{1} \and Max Angelo Dapitilla Perin\inst{1}}
+\authorrunning{First Author and M.A.D. Perin} % short author list
+
+\institute{Bohol Island State University -- Bilar Campus, Bohol, Philippines\\
+\email{xxxx@bisu.edu.ph, maxangelo.perin@bisu.edu.ph}
+}
+
+\begin{document}
+
+\maketitle
+
+% ==========================
+% GLOBAL PAGE HEADER (EVERY PAGE)
+% ==========================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\scriptsize Research Project Presentation for Bachelor of Science in Computer Science 3 in CS 311 -- Algorithms and Complexity S.Y. 2025--2026, 1st Semester}
+\fancyfoot[C]{\thepage}
+\thispagestyle{fancy} % apply header/footer on first page
+
+% ==========================
+% ABSTRACT + KEYWORDS
+% ==========================
+\begin{abstract}
+This template demonstrates how to document algorithmic time complexity
+for a specific software project feature in CS 311 -- Algorithms and
+Complexity. Students are expected to (i) identify core algorithms in
+their source code, (ii) express their time complexity using Big-$O$,
+Big-$\Omega$, and Big-$\Theta$ notation, and (iii) discuss the design
+implications for performance and scalability.
+\keywords{Algorithms and Complexity \and Time Complexity \and Source Code Analysis \and Data Structures}
+\end{abstract}
+
+% ==========================
+% SECTIONS
+% ==========================
+
+\section{Introduction}
+Algorithms and data structures form the core of computer science and
+directly influence how software systems perform when the input size
+grows. In CS 311 -- Algorithms and Complexity, students are trained to
+reason not only about whether a program produces the correct output, but
+also about how efficiently it does so in terms of time and space
+resources. As real-world applications increasingly handle large amounts
+of data, understanding algorithmic time complexity becomes essential for
+designing scalable and responsive systems.
+
+The [Project Name -- Feature] is a functional component of a larger
+software project developed in the Bachelor of Science in Computer
+Science curriculum. This feature operates on application data through
+operations such as searching, sorting, updating, or traversing records.
+Although the feature is already implemented and working, its performance
+characteristics are often not explicitly documented. Without a clear
+analysis of time complexity, developers may unintentionally deploy
+algorithms that behave poorly under heavy load or large input sizes.
+
+This study focuses on measuring algorithmic time complexity directly
+from the source code of the [Project Name -- Feature]. Instead of
+treating the implementation as a ``black box'', the analysis inspects
+loops, conditional statements, recursion, and data structure operations
+to derive mathematical expressions for the running time $T(n)$ in terms
+of the input size $n$. These expressions are then simplified into
+standard asymptotic notations such as Big-$O$, Big-$\Omega$, and
+Big-$\Theta$ to provide an abstract view of performance growth.
+
+Specifically, the objectives of this report are: (i) to identify the
+critical functions and methods in the [Project Name -- Feature] that
+dominate running time, (ii) to derive corresponding time complexity
+equations from the source code, and (iii) to interpret the results in
+the context of expected input sizes and possible refactoring options.
+Through this analysis, the report aims to demonstrate how theoretical
+concepts from CS 311 apply concretely to an actual software artifact
+developed by students, thereby strengthening the link between algorithm
+design and practical software engineering.
+
+\section{Methodology}
+
+\subsection{Identifying Input Size and Basic Operations}
+Let $n$ denote the input size relevant to your feature (for example, the
+number of records, nodes, or items processed). Choose one basic
+operation to count, such as a key comparison or an assignment.
+
+\subsection{Template for Time Complexity Equations}
+
+\subsubsection{Example: Nested Loop}
+\begin{verbatim}
+for (i = 1; i <= n; i++) {
+    for (j = 1; j <= n; j++) {
+        // basic operation
+    }
+}
+\end{verbatim}
+\begin{align}
+T(n) &= \sum_{i=1}^{n} \sum_{j=1}^{n} 1 = \sum_{i=1}^{n} n = n^2 \\
+     &= \Theta(n^2).
+\end{align}
+So we can write:
+\[
+T(n) = O(n^2), \quad T(n) = \Omega(n^2), \quad T(n) = \Theta(n^2).
+\]
+
+\subsubsection{Example: Logarithmic Loop}
+\begin{verbatim}
+while (n > 1) {
+    n = n / 2;
+    // basic operation
+}
+\end{verbatim}
+Number of iterations $\approx \log_2 n$:
+\[
+T(n) = 3\log_2 n + 10 = \Theta(\log n),
+\]
+so
+\[
+T(n) = O(\log n), \quad T(n) = \Omega(\log n), \quad T(n) = \Theta(\log n).
+\]
+
+\subsection{General Polynomial Example}
+If
+\[
+T(n) = 5n^3 + 2n^2 + 7,
+\]
+then
+\[
+T(n) = O(n^3), \quad T(n) = \Omega(n^3), \quad T(n) = \Theta(n^3).
+\]
+
+\section{Results and Discussion}
+This section reports the results of the time-complexity computations for
+the key functions or modules of the [Project Name -- Feature] and
+interprets what they imply for performance.
+
+\subsection{Sample Derived Functions}
+For illustration, suppose the analysis produced the following equations:
+\begin{itemize}
+  \item \textbf{Search operation} (\texttt{searchUsers()}):
+        \[
+        T_{\text{search}}(n) = 4n + 12,
+        \]
+        hence
+        \[
+        T_{\text{search}}(n) = O(n), \quad
+        T_{\text{search}}(n) = \Omega(n), \quad
+        T_{\text{search}}(n) = \Theta(n).
+        \]
+  \item \textbf{Sort operation} (\texttt{sortRecords()}):
+        \[
+        T_{\text{sort}}(n) = \frac{n^2 - n}{2},
+        \]
+        so
+        \[
+        T_{\text{sort}}(n) = O(n^2), \quad
+        T_{\text{sort}}(n) = \Omega(n^2), \quad
+        T_{\text{sort}}(n) = \Theta(n^2).
+        \]
+  \item \textbf{Index-building operation} (\texttt{buildIndex()}):
+        \[
+        T_{\text{index}}(n) = 2n\log_2 n + 5n,
+        \]
+        which yields
+        \[
+        T_{\text{index}}(n) = O(n\log n), \quad
+        T_{\text{index}}(n) = \Omega(n\log n), \quad
+        T_{\text{index}}(n) = \Theta(n\log n).
+        \]
+\end{itemize}
+
+\subsection{Summary Table of Asymptotic Behaviour}
+\begin{table}[h]
+\centering
+\caption{Sample summary of time-complexity results. Replace rows with your own functions.}
+\begin{tabular}{llll}
+\toprule
+Function/Module & Derived $T(n)$ & Big-$O$ & Big-$\Theta$ (Big-$\Omega$) \\
+\midrule
+\texttt{searchUsers()} & $4n + 12$ & $O(n)$ & $\Theta(n)$ \\
+\texttt{sortRecords()} & $\dfrac{n^{2}-n}{2}$ & $O(n^2)$ & $\Theta(n^2)$ \\
+\texttt{buildIndex()}  & $2n\log n + 5n$ & $O(n\log n)$ & $\Theta(n\log n)$ \\
+\bottomrule
+\end{tabular}
+\label{tab:complexity-summary}
+\end{table}
+
+After presenting your own table, discuss which operations become
+bottlenecks for large $n$ and what algorithmic or data-structure changes
+could improve performance in the [Project Name -- Feature].
+
+\section{Conclusion}
+Summarize the main insights from your computed time complexities, relate
+them to realistic input sizes for the [Project Name -- Feature], and
+state recommendations for improving or maintaining performance.
+
+\begin{thebibliography}{8}
+
+\bibitem{CLRS}
+Cormen, T.H., Leiserson, C.E., Rivest, R.L., Stein, C.:
+Introduction to Algorithms.
+3rd edn. MIT Press (2009)
+
+\bibitem{Sedgewick}
+Sedgewick, R., Wayne, K.:
+Algorithms.
+4th edn. Addison-Wesley (2011)
+
+\end{thebibliography}
+
+\end{document}
